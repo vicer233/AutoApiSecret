@@ -1,4 +1,4 @@
-### 项目说明 ###
+### 项目说明 ###修复GitHub官方提示弃用版本
 * 利用github action实现定时自动运行api调用，保持E5开发活跃。
 * 免费，不需要额外设备/服务器，部署完不用管啦。
 * 加密版，隐藏应用id+机密，保护账号安全
@@ -9,6 +9,28 @@
 * 加密版地址：https://github.com/wangziyingwen/AutoApiSecret
 * 更新日志/旧版：https://github.com/wangziyingwen/Autoapi-test
 
+### 教程总结 ###
+```
+Fork AutoApiSecret到github；
+
+Azure注册应用，选择任何组织目录，重定向url选web，填入http://localhost:53682/，注册，保存id和机密；
+
+设置应用权限，选择files.read.all files.readwrite.all sites.read.all sites.readwriter.all user.read.all user.readwrite.all directory.read.all directory.readwrite.all mail.read mail.readwrite mailboxsetting.read mailboxsetting.readwrite，全部勾选，应为原有1个+12个，共计13个，授予权限；
+
+rclone执行命令.\rclone authorize "onedrive" "id" "机密"，弹出确认框，确认后返回refresh_token；
+
+回到github自己项目下，修改1.txt，将refresh_token粘贴进去；
+
+对项目setting项，分别增加secretCONFIG_ID id=r'id' CONFIG_KEY secret=r'机密'；
+
+点击用户头像，进入用户setting项，选择developer setting，选择personal access tokens，增加GITHUB_TOKEN,选择repo、admin：repo_hook、workflow，生成token；
+
+回到github自己项目下，star项目后，进入actions，随后刷新页面出现workflow项目，施工完成后，点击进入，查看testapi，是否十次运行成功；
+
+默认设置为周一到周五，每六小时运行三轮，可自行修改crontab 12 */6 * * 1-5。
+
+本文链接：
+```
 ### 区别 ###
   项目用的是公共仓库（开放代码），所有人都能看到你的代码内容。
 
@@ -100,5 +122,3 @@
   
   ### 教程链接 ###
   https://51.ruyo.net/15646.html
-
-
