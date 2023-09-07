@@ -48,8 +48,8 @@ jobs:
         rm -f configkey.txt    
     - name: Commit #上传新的refresh_token到仓库
       run: |
-        git config --global user.email 403466121@qq.com
-        git config --global user.name li
+        git config --global user.email jin492763874@126.com
+        git config --global user.name giserd
         git add .
         git commit -m "update new refresh_token" -a
     - name: Push changes
